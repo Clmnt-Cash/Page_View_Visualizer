@@ -25,7 +25,7 @@ def draw_line_plot():
     ax.set_title("Daily freeCodeCamp Forum Page Views 5/2016-12/2019")
     ax.set_xlabel("Date")
     ax.set_ylabel("Page Views")
-    # Save image and return fig (don't change this part)
+
     fig.savefig("line_plot.png")
     return fig
 
@@ -61,13 +61,12 @@ def draw_bar_plot():
     ]
     ax.legend(title="Months", labels=months)
 
-    # Save image and return fig (don't change this part)
     fig.savefig("bar_plot.png")
     return fig
 
 
 def draw_box_plot():
-    # Prepare data for box plots (this part is done!)
+    # data for box plots
     df_box = df.copy()
     df_box.reset_index(inplace=True)
     df_box["year"] = [d.year for d in df_box.date]
@@ -75,7 +74,7 @@ def draw_box_plot():
     df_box["month_num"] = df_box["date"].dt.month  # Month as a number
     df_box = df_box.sort_values("month_num")  # Ensure months are in correct order
 
-    # Draw box plots (using Seaborn)
+    # Draw box plots
     fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(15, 6))
     # Year box plot
     sns.boxplot(x="year", y="value", data=df_box, ax=axes[0])
@@ -88,6 +87,5 @@ def draw_box_plot():
     axes[1].set_xlabel("Month")
     axes[1].set_ylabel("Page Views")
 
-    # Save image and return fig (don't change this part)
     fig.savefig("box_plot.png")
     return fig
