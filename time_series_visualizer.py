@@ -20,7 +20,11 @@ df = df[(df["value"] >= lower_part) & (df["value"] <= upper_part)]
 
 def draw_line_plot():
     # Draw line plot
-
+    fig, ax = plt.subplots(figsize=(12, 6))
+    ax.plot(df.index, df["value"], color="blue", linewidth=1)
+    ax.set_title("Daily freeCodeCamp Forum Page Views 5/2016-12/2019")
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Page Views")
     # Save image and return fig (don't change this part)
     fig.savefig("line_plot.png")
     return fig
