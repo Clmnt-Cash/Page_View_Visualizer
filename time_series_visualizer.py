@@ -7,12 +7,15 @@ register_matplotlib_converters()
 
 # Import data
 df = pd.read_csv("fcc-forum-pageviews.csv")
-# Set the index to the date column and parse dates
+# Set index to date column and parse dates
 df["date"] = pd.to_datetime(df["date"])
 df.set_index("date", inplace=True)
-print(df)
+
 # Clean data
-df = None
+lower_part = df["value"].quantile(0.025)  # flop 2,5%
+upper_part = df["value"].quantile(0.975)  # top 2,5%
+# filtering top and flop
+df = df[(df["value"] >= lower_part) & (df["value"] <= upper_part)]
 
 
 def draw_line_plot():
